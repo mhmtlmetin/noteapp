@@ -7,7 +7,6 @@ import { delay, mergeMap, materialize, dematerialize } from 'rxjs/operators';
 let users = JSON.parse(localStorage.getItem('users')) || [];
 let currentUserId = '';
 let notesList = JSON.parse(localStorage.getItem('notesList')) || [];
-let todoList = JSON.parse(localStorage.getItem('notesList')) || [];
 localStorage.setItem('notesList', JSON.stringify(notesList));
 
 @Injectable()
