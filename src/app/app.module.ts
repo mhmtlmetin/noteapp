@@ -13,11 +13,17 @@ import { JwtInterceptor } from './helper/jwt.interceptor';
 import { ErrorInterceptor } from './helper/error.interceptor';
 import { fakeBackendProvider } from './helper/fake-backend';
 import { AuthService } from './services/auth.service';
+import { HeaderComponent } from './header/header.component';
+import { CreateNoteComponent } from './create-note/create-note.component';
+import { NoteListComponent } from './note-list/note-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
+    HeaderComponent,
+    CreateNoteComponent,
+    NoteListComponent,
   ],
   imports: [
     BrowserModule,

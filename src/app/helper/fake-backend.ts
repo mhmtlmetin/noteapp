@@ -91,7 +91,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         }
 
         function addNote() {
-            const { title, note, image } = body;
+            const { title, note, image, priorityLevel } = body;
             currentUserId = JSON.parse(localStorage.getItem('currentUser')).id || '';
             if (!isLoggedIn() || currentUserId === '' ) {
                 return unauthorized();
@@ -99,6 +99,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
             const notes = {
                 id: 0,
                 title,
+                priorityLevel,
                 note,
                 image
             };

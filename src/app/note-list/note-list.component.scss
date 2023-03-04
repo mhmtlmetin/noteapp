@@ -1,0 +1,58 @@
+$color_1: white;
+
+.container {
+	display: inline-grid;
+	justify-content: space-between;
+	margin-top: 60px;
+	grid-template-columns: auto auto auto;
+	padding-bottom: 10px;
+}
+h6 {
+	color: $color_1;
+	float: left;
+	font-weight: bold;
+}
+mat-card {
+	width: 350px;
+	height: auto;
+	cursor: default;
+	margin-top: 20px;
+	padding-top: 2rem;
+	padding-left: 0;
+	padding-right: 0;
+}
+.mat-card.scrollable-content {
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+    .buttons {
+        display: none;
+    }
+    .buttons:hover{
+      display: block;
+    }
+}
+mat-card-header {
+	height: 25%;
+}
+mat-card-content {
+	height: 75%;
+	padding: 3px;
+}
+p {
+	text-align: justify;
+}
+.mat-card {
+	&:not([class*=mat-elevation-z]) {
+		box-shadow: 0 2px 1px -1px rgb(37, 33, 33), 0 1px 10px 0 rgb(0, 162, 255), 0 1px 3px 0 rgba(0,0,0,1);
+	}
+}
+.end {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+img {
+	width: 80%;
+	height: 250px;
+	padding: 25px;
+}

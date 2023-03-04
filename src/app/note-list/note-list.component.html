@@ -1,0 +1,22 @@
+<div class="container">
+    <mat-card *ngFor='let note of notesList' class="scrollable-content" (mouseenter)="note.isHovered = true" (mouseleave)="note.isHovered = false">
+        <mat-card-header>
+        <mat-card-title><h6>{{ note.title }}</h6></mat-card-title>
+    </mat-card-header>
+        <mat-card-content style="padding:1em;">
+            <p>{{ note.note }}</p>
+            <p><strong>Öncelik Derecesi:  </strong>{{ note.priorityLevel }}</p>
+            <img *ngIf='note.image' [src]= 'note.image' /> 
+           
+        </mat-card-content>
+        <div>
+            <button [ngStyle]="{visibility: note.isHovered ? 'visible' : 'hidden'}">Güncelle</button>
+            <button [ngStyle]="{visibility: note.isHovered ? 'visible' : 'hidden'}">Sil</button>
+        </div>
+    </mat-card>
+    
+</div>
+<div *ngIf="lenempty"><h1>Start creating notes!</h1></div>
+<div class="end">
+<a style="text-decoration:none;" color="accent" TITLE="Go to homepage" mat-raised-button routerLink="**">Home</a>
+</div>

@@ -1,0 +1,20 @@
+<mat-toolbar>
+    <span>
+        <a routerLink = '/' >Notlarım</a>
+    </span>
+    <span class="spacer"></span>
+    <ul>
+        <li *ngIf="userIsAuthenticated">
+            <a mat-raised-button color="warn" [routerLink]="['/create-note']">Not Ekle</a>
+        </li>
+        <li *ngIf="userIsAuthenticated">
+           {{name}}
+        </li>&nbsp;&nbsp;
+        <li *ngIf="!userIsAuthenticated">
+            <a mat-button routerLinkActive="mat-accent" routerLink="/login">Giriş</a>
+        </li>
+        <li *ngIf="userIsAuthenticated">
+            <button mat-raised-button color="warn" (click)="onLogout()">Çıkış Yap</button>
+        </li>
+    </ul>
+</mat-toolbar>
