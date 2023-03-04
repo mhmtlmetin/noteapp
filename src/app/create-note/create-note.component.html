@@ -7,7 +7,7 @@
     <mat-error *ngIf="isSubmitted && f.title.errors">BAŞLIK ZORUNLUDUR</mat-error>
 </mat-form-field>
 <mat-form-field>
-    <input name="priorityLevel" placeholder="Öncelik Derecesi" matInput type="number" formControlName="priorityLevel"  [ngClass]="{ 'is-invalid': isSubmitted && f.title.errors }" />
+    <input name="priorityLevel" placeholder="Öncelik Derecesi" matInput type="number" maxlength="5" formControlName="priorityLevel"  [ngClass]="{ 'is-invalid': isSubmitted && f.title.errors }" />
     <mat-error *ngIf="isSubmitted && f.title.errors">Öncelik derecesi girmek zorunludur</mat-error>
 </mat-form-field>
 </div>

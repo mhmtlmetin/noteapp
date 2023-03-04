@@ -6,6 +6,7 @@ import { delay, mergeMap, materialize, dematerialize } from 'rxjs/operators';
 // array in local storage for registered users
 let users = JSON.parse(localStorage.getItem('users')) || [];
 let currentUserId = '';
+let todoList:any;
 let notesList = JSON.parse(localStorage.getItem('notesList')) || [];
 localStorage.setItem('notesList', JSON.stringify(notesList));
 
