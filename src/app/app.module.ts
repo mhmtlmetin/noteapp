@@ -16,6 +16,7 @@ import { AuthService } from './services/auth.service';
 import { HeaderComponent } from './header/header.component';
 import { CreateNoteComponent } from './create-note/create-note.component';
 import { NoteListComponent } from './note-list/note-list.component';
+import { NotifficationComponent } from './notiffication/notiffication.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { NoteListComponent } from './note-list/note-list.component';
     HeaderComponent,
     CreateNoteComponent,
     NoteListComponent,
+    NotifficationComponent,
   ],
   imports: [
     BrowserModule,
