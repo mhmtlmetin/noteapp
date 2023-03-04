@@ -1,5 +1,5 @@
 <mat-card>
-    <mat-card-title><i style="cursor: default" class="material-icons">notes</i> NOT EKLE</mat-card-title>
+    <mat-card-title><i style="cursor: default" class="material-icons"></i> NOT EKLE</mat-card-title>
 <form [formGroup]="noteForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
     <mat-form-field>
@@ -20,11 +20,10 @@
 <div class="form-group">
     <div class="button-container">
             <input hidden type="file" id="uploadImage" formControlName="uploadImage" #uploadImage (change)="getImage($event);"/>
-            <button color="primary" mat-raised-button type="button"  (click)="uploadImage.click()"><a TITLE="Upload Image"><i class="material-icons">add_photo_alternate</i></a></button>
-            <button color="primary" *ngIf="image" type="button" mat-raised-button (click)="deleteImage()" ><a TITLE="Delete Image"><i class="material-icons">delete</i></a></button>
+            <button color="primary" mat-raised-button type="button"  (click)="uploadImage.click()"><a TITLE="Upload Image"><i class="material-icons">Fotoğraf Ekle</i></a></button>
+            <button color="primary" *ngIf="image" type="button" mat-raised-button (click)="deleteImage()" ><a TITLE="Delete Image"><i class="material-icons">sil</i></a></button>
     </div>
     <img *ngIf="image" [src]="image" accept="image/*" />
-    <mat-error *ngIf="isInvalidImage">Upload image files only!</mat-error>
 </div>
 
 <div class="form-group">
