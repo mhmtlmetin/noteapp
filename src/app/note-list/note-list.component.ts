@@ -12,6 +12,7 @@ export class NoteListComponent implements OnInit {
   notes: any;
   notesList: any;
   lenempty: any;
+  selected = '1';
   constructor(private authenticationService: AuthService) {
       this.id = this.authenticationService.currentUserValue.id;
       this.lenempty = false;
@@ -29,5 +30,10 @@ export class NoteListComponent implements OnInit {
           this.lenempty = true;
       }
   }
-
+  sortByPriority(e){
+    if (e.value == 0)
+    this.notesList.sort((a, b) => a.priorityLevel - b.priorityLevel);
+    else 
+    this.notesList.sort((a, b) => b.priorityLevel - a.priorityLevel);
+  }
 }
