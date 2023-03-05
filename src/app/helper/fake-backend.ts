@@ -32,6 +32,8 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                     return deleteUser();
                 case url.endsWith('/notes/create') && method === 'POST':
                     return addNote();
+                case url.endsWith('/notes/delete') && method === 'POST':
+                    return deleteNote();
                 case url.endsWith('/todo/'):
                     if (method === 'POST') {
                         return addNotes();
@@ -122,6 +124,22 @@ export class FakeBackendInterceptor implements HttpInterceptor {
             return ok(body);
         }
 
+        function deleteNote(){
+            currentUserId = JSON.parse(localStorage.getItem('currentUser')).id || '';
+            if (!isLoggedIn() || currentUserId === '') {
+                return unauthorized();
+            }
+            const noteIdToDelete = body.id;
+            const index = notesList.findIndex(x => x.id === currentUserId);
+            const userNotes = notesList[index].userNotes;
+            const noteIndexToDelete = userNotes.findIndex(x => JSON.parse(x).id === noteIdToDelete);
+            if (noteIndexToDelete >= 0) {
+                userNotes.splice(noteIndexToDelete, 1);
+                localStorage.setItem('notesList', JSON.stringify(notesList));
+                return ok({});
+            }
+        }
+
         function getNote() {
             currentUserId = JSON.parse(localStorage.getItem('currentUser')).id || '';
             if (!isLoggedIn() || currentUserId === '' ) {
@@ -154,7 +172,6 @@ export class FakeBackendInterceptor implements HttpInterceptor {
 
             return ok(body);
         }
-
         // helper functions
         function ok(body?) {
             return of(new HttpResponse({ status: 200, body }));

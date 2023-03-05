@@ -4,6 +4,8 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmationDialogComponent } from '../helper/confirmationDialog/confirmationDialog.component';
+import { NotesService } from '../services/notest.service';
+import { first } from 'rxjs/operators';
 @Component({
   selector: 'app-note-list',
   templateUrl: './note-list.component.html',
@@ -20,7 +22,10 @@ export class NoteListComponent implements OnInit {
   searchText: string;
   start: number = 0;
   limit: number = 10;
-  constructor(private authenticationService: AuthService, private elementRef: ElementRef, private dialog: MatDialog) {
+  constructor(private authenticationService: AuthService,
+     private elementRef: ElementRef, 
+     private dialog: MatDialog,
+     private notesService:NotesService) {
     this.id = this.authenticationService.currentUserValue.id;
     this.lenempty = false;
   }
@@ -81,17 +86,16 @@ export class NoteListComponent implements OnInit {
     dialogRef.afterClosed().subscribe((confirmed: boolean) => {
       if (confirmed) {
         this.notesList = this.notesList.filter(item=> item.id != event.id)
-        const index = this.notes.findIndex(x => x.id === this.id);
-        this.notes[index].userNotes = this.notesList;
-        localStorage.removeItem("notesList")
-        const quotedArray = this.notes.map(obj =>
-          Object.keys(obj).reduce((acc, key) => {
-            const value = obj[key];
-            const quotedValue = typeof value === 'number' || typeof value === 'boolean' ? value : `"${value}"`;
-            return {...acc, [key]: quotedValue};
-          }, {})
-        );
-        localStorage.setItem('notesList',JSON.stringify(quotedArray))
+        this.notesService.deleteNote(event.id)
+        .pipe(first())
+      .subscribe(
+        data => {
+          console.log('returned from backend');
+          
+        },
+        error => {
+          
+        });
       }
 
     })
