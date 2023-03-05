@@ -27,8 +27,8 @@
 
         </mat-card-content>
         <div>
-            <button [ngStyle]="{visibility: note.isHovered ? 'visible' : 'hidden'}">Güncelle</button>
-            <button [ngStyle]="{visibility: note.isHovered ? 'visible' : 'hidden'}">Sil</button>
+            <a mat-raised-button style="background-color:blue; color: white; margin-right: 5px;" [ngStyle]="{visibility: note.isHovered ? 'visible' : 'hidden'}">Düzenle</a>
+            <button mat-raised-button color="warn" [ngStyle]="{visibility: note.isHovered ? 'visible' : 'hidden'}">Sil</button>
         </div>
     </mat-card>
 
@@ -37,5 +37,5 @@
     <h1>Henüz içerik girilmedi</h1>
 </div>
 <div class="end">
-    <button *ngIf="!lenempty" (click)="onLoadMore()">Daha Fazla Yükle</button>
+    <button mat-raised-button style="background-color:blue" *ngIf="!lenempty" (click)="onLoadMore()">Daha Fazla Yükle</button>
 </div>
