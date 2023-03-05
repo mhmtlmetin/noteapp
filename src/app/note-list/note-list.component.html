@@ -6,6 +6,7 @@
         <mat-option value="1">En Yüksek</mat-option>
     </mat-select>
   </mat-form-field>
+  <input mat-input type="text" [(ngModel)]="searchText" placeholder="Ara" (keyup)="search()">
 <div class="container">
     <mat-card *ngFor='let note of notesList' class="scrollable-content" (mouseenter)="note.isHovered = true" (mouseleave)="note.isHovered = false">
         <mat-card-header>
@@ -26,5 +27,5 @@
 </div>
 <div *ngIf="lenempty"><h1>Henüz içerik girilmedi</h1></div>
 <div class="end">
-<a style="text-decoration:none;" color="accent" TITLE="Go to homepage" mat-raised-button routerLink="**">Home</a>
+    <button (click)="onLoadMore()">Daha Fazla Yükle</button>
 </div>
