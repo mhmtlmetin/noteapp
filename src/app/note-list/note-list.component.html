@@ -1,31 +1,42 @@
-<mat-form-field appearance="fill" style="width: 30%; background-color: rgb(117, 111, 111); margin-top: 1%;">
-    <mat-label>Öncelik Derecesi</mat-label>
-    <mat-select (selectionChange)="sortByPriority($event)">
-        <mat-option [(value)]="selected"></mat-option>
-        <mat-option value="0">En Düşük</mat-option>
-        <mat-option value="1">En Yüksek</mat-option>
-    </mat-select>
-  </mat-form-field>
-  <input mat-input type="text" [(ngModel)]="searchText" placeholder="Ara" (keyup)="search()">
+<div class="filter">
+    <input mat-input type="text" [(ngModel)]="searchText" placeholder="Ara" (keyup)="search()">
+    <mat-form-field style="padding: auto;
+  width: 20%; 
+ background-color: rgb(117, 111, 111); 
+  margin-top: 1%; 
+  height: 48px;">
+        <mat-label>Öncelik Derecesi</mat-label>
+        <mat-select (selectionChange)="sortByPriority($event)">
+            <mat-option [(value)]="selected"></mat-option>
+            <mat-option value="0">En Düşük</mat-option>
+            <mat-option value="1">En Yüksek</mat-option>
+        </mat-select>
+    </mat-form-field>
+</div>
 <div class="container">
-    <mat-card *ngFor='let note of notesList' class="scrollable-content" (mouseenter)="note.isHovered = true" (mouseleave)="note.isHovered = false">
+    <mat-card *ngFor='let note of notesList' class="scrollable-content" (mouseenter)="note.isHovered = true"
+        (mouseleave)="note.isHovered = false">
         <mat-card-header>
-        <mat-card-title><h6>{{ note.title }}</h6></mat-card-title>
-    </mat-card-header>
+            <mat-card-title>
+                <h6>{{ note.title }}</h6>
+            </mat-card-title>
+        </mat-card-header>
         <mat-card-content style="padding:1em;">
             <p>{{ note.note }}</p>
-            <p><strong>Öncelik Derecesi:  </strong>{{ note.priorityLevel }}</p>
-            <img *ngIf='note.image' [src]= 'note.image' /> 
-           
+            <p><strong>Öncelik Derecesi: </strong>{{ note.priorityLevel }}</p>
+            <img *ngIf='note.image' [src]='note.image' />
+
         </mat-card-content>
         <div>
             <button [ngStyle]="{visibility: note.isHovered ? 'visible' : 'hidden'}">Güncelle</button>
             <button [ngStyle]="{visibility: note.isHovered ? 'visible' : 'hidden'}">Sil</button>
         </div>
     </mat-card>
-    
+
 </div>
-<div *ngIf="lenempty"><h1>Henüz içerik girilmedi</h1></div>
+<div *ngIf="lenempty">
+    <h1>Henüz içerik girilmedi</h1>
+</div>
 <div class="end">
-    <button (click)="onLoadMore()">Daha Fazla Yükle</button>
+    <button *ngIf="!lenempty" (click)="onLoadMore()">Daha Fazla Yükle</button>
 </div>

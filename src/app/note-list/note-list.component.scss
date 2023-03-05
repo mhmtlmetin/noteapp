@@ -47,6 +47,17 @@ p {
 		box-shadow: 0 2px 1px -1px rgb(37, 33, 33), 0 1px 10px 0 rgb(0, 162, 255), 0 1px 3px 0 rgba(0,0,0,1);
 	}
 }
+.filter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    input {
+        height: 35px;
+        margin-right: 20px;
+        margin-top: 10px;
+    }
+   
+}
 .end {
 	margin-top: 20px;
 	margin-bottom: 20px;

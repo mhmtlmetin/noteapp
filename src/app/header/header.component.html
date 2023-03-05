@@ -5,7 +5,7 @@
     <span class="spacer"></span>
     <ul>
         <li *ngIf="userIsAuthenticated">
-            <a mat-raised-button color="warn" [routerLink]="['/create-note']">Not Ekle</a>
+            <a mat-raised-button [routerLink]="['/create-note']" style="background-color: blue; margin-right: 20px;">Not Ekle</a>
         </li>
         <li *ngIf="userIsAuthenticated">
            {{name}}

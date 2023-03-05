@@ -30,6 +30,8 @@ export class LoginComponent implements OnInit {
     }
 
     ngOnInit() {
+      const initialUser = [{"firsname":"admin", "lastname":"admin", "user":"admin", "password":"12345"}]
+      localStorage.setItem("users",JSON.stringify(initialUser))
         this.loginForm = this.formBuilder.group({
             username: ['', Validators.required],
             password: ['', Validators.required]
