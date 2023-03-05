@@ -13,6 +13,7 @@ export class NoteListComponent implements OnInit {
   id: number;
   notes: any;
   notesList: any;
+  allNotesLiist: any;
   lenempty: any;
   selected = '1';
   searchText: string;
@@ -48,7 +49,8 @@ export class NoteListComponent implements OnInit {
     } else {
       this.lenempty = true;
     }
-    this.notesList = this.notesList.slice(0, this.limit)
+    this.notesList = this.notesList.slice(0, this.limit);
+    this.allNotesLiist = this.notesList
   }
   sortByPriority(e) {
     if (e.value == 0)
@@ -57,7 +59,8 @@ export class NoteListComponent implements OnInit {
       this.notesList.sort((a, b) => b.priorityLevel - a.priorityLevel);
   }
   search() {
-    this.notesList.filter(items => items.title.includes(this.searchText))
+   this.notesList= this.notesList.filter(items => items.title.includes(this.searchText))
+   if (this.searchText.length == 0) this.notesList = this.allNotesLiist
   }
   onLoadMore() {
     this.limit += 10
