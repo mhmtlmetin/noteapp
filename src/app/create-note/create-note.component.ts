@@ -76,7 +76,7 @@ export class CreateNoteComponent implements OnInit {
         data => {
           console.log('returned from backend');
           alert('Note added successfully!');
-          this.router.navigate(['**']);
+          this.router.navigate(['note-list']);
         },
         error => {
           this.isLoading = false;

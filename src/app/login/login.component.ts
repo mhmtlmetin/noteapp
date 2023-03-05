@@ -27,10 +27,11 @@ export class LoginComponent implements OnInit {
         if (this.authenticationService.currentUserValue) {
             this.router.navigate(['/']);
         }
+        
     }
 
     ngOnInit() {
-      const initialUser = [{"firsname":"admin", "lastname":"admin", "user":"admin", "password":"12345"}]
+      const initialUser = [{"id":"1","firstname":"admin", "lastname":"admin", "username":"admin", "password":"12345"}]
       localStorage.setItem("users",JSON.stringify(initialUser))
         this.loginForm = this.formBuilder.group({
             username: ['', Validators.required],
