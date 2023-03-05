@@ -39,6 +39,7 @@ export class NoteListComponent implements OnInit {
   ngOnInit() {
     this.loadData();
   }
+
   loadData() {
     this.notes = JSON.parse(localStorage.getItem('notesList'));
     const index = this.notes.findIndex(x => x.id === this.id);
@@ -53,20 +54,22 @@ export class NoteListComponent implements OnInit {
     this.notesList = this.notesList.slice(0, this.limit);
     this.allNotesLiist = this.notesList
   }
+
   sortByPriority(e) {
     if (e.value == 0)
       this.notesList.sort((a, b) => a.priorityLevel - b.priorityLevel);
     else
       this.notesList.sort((a, b) => b.priorityLevel - a.priorityLevel);
   }
+
   search() {
-   this.notesList= this.notesList.filter(items => items.title.includes(this.searchText))
-   if (this.searchText.length == 0) this.notesList = this.allNotesLiist
+    this.notesList = this.notesList.filter(items => items.title.includes(this.searchText))
+    if (this.searchText.length == 0) this.notesList = this.allNotesLiist
   }
 
-  onDelete(){
-    const dialogRef = this.dialog.open(ConfirmationDialogComponent,{
-      data:{
+  onDelete(event) {
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      data: {
         message: 'Silmek istediğinize emin misiniz',
         buttonText: {
           ok: 'Evet',
@@ -75,9 +78,20 @@ export class NoteListComponent implements OnInit {
       }
     });
 
-    dialogRef.afterClosed().subscribe((confirmed:boolean)=> {
-      if(confirmed){
-        
+    dialogRef.afterClosed().subscribe((confirmed: boolean) => {
+      if (confirmed) {
+        this.notesList = this.notesList.filter(item=> item.id != event.id)
+        const index = this.notes.findIndex(x => x.id === this.id);
+        this.notes[index].userNotes = this.notesList;
+        localStorage.removeItem("notesList")
+        const quotedArray = this.notes.map(obj =>
+          Object.keys(obj).reduce((acc, key) => {
+            const value = obj[key];
+            const quotedValue = typeof value === 'number' || typeof value === 'boolean' ? value : `"${value}"`;
+            return {...acc, [key]: quotedValue};
+          }, {})
+        );
+        localStorage.setItem('notesList',JSON.stringify(quotedArray))
       }
 
     })
