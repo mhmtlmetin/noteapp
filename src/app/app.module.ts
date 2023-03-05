@@ -17,6 +17,7 @@ import { HeaderComponent } from './header/header.component';
 import { CreateNoteComponent } from './create-note/create-note.component';
 import { NoteListComponent } from './note-list/note-list.component';
 import { NotifficationComponent } from './notiffication/notiffication.component';
+import { ConfirmationDialogComponent } from './helper/confirmationDialog/confirmationDialog.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { NotifficationComponent } from './notiffication/notiffication.component'
     CreateNoteComponent,
     NoteListComponent,
     NotifficationComponent,
+    ConfirmationDialogComponent
   ],
   imports: [
     BrowserModule,

@@ -2,7 +2,8 @@ import { ElementRef } from '@angular/core';
 import { HostListener } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
-
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmationDialogComponent } from '../helper/confirmationDialog/confirmationDialog.component';
 @Component({
   selector: 'app-note-list',
   templateUrl: './note-list.component.html',
@@ -19,7 +20,7 @@ export class NoteListComponent implements OnInit {
   searchText: string;
   start: number = 0;
   limit: number = 10;
-  constructor(private authenticationService: AuthService, private elementRef: ElementRef) {
+  constructor(private authenticationService: AuthService, private elementRef: ElementRef, private dialog: MatDialog) {
     this.id = this.authenticationService.currentUserValue.id;
     this.lenempty = false;
   }
@@ -61,6 +62,26 @@ export class NoteListComponent implements OnInit {
   search() {
    this.notesList= this.notesList.filter(items => items.title.includes(this.searchText))
    if (this.searchText.length == 0) this.notesList = this.allNotesLiist
+  }
+
+  onDelete(){
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent,{
+      data:{
+        message: 'Silmek istediğinize emin misiniz',
+        buttonText: {
+          ok: 'Evet',
+          cancel: 'Hayır'
+        }
+      }
+    });
+
+    dialogRef.afterClosed().subscribe((confirmed:boolean)=> {
+      if(confirmed){
+        
+      }
+
+    })
+
   }
   onLoadMore() {
     this.limit += 10
