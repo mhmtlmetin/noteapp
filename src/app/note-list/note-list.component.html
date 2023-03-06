@@ -27,7 +27,9 @@
 
         </mat-card-content>
         <div>
-            <a mat-raised-button style="background-color:blue; color: white; margin-right: 5px;" [ngStyle]="{visibility: note.isHovered ? 'visible' : 'hidden'}">Düzenle</a>
+            <button mat-raised-button 
+            (click)="onUpdate(note)"
+            style="background-color:blue; color: white; margin-right: 5px;" [ngStyle]="{visibility: note.isHovered ? 'visible' : 'hidden'}">Düzenle</button>
             <button mat-raised-button color="warn" [ngStyle]="{visibility: note.isHovered ? 'visible' : 'hidden'}" (click)="onDelete(note)">Sil</button>
         </div>
     </mat-card>

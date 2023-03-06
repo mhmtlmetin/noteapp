@@ -18,6 +18,7 @@ import { CreateNoteComponent } from './create-note/create-note.component';
 import { NoteListComponent } from './note-list/note-list.component';
 import { NotifficationComponent } from './notiffication/notiffication.component';
 import { ConfirmationDialogComponent } from './helper/confirmationDialog/confirmationDialog.component';
+import { UpdateNoteComponent } from './update-note/update-note.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { ConfirmationDialogComponent } from './helper/confirmationDialog/confirm
     CreateNoteComponent,
     NoteListComponent,
     NotifficationComponent,
-    ConfirmationDialogComponent
+    ConfirmationDialogComponent,
+    UpdateNoteComponent
   ],
   imports: [
     BrowserModule,

@@ -1,29 +1,31 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 import { first } from 'rxjs/operators';
 import { NotesService } from '../services/notest.service';
 
 @Component({
-  selector: 'app-create-note',
-  templateUrl: './create-note.component.html',
-  styleUrls: ['./create-note.component.scss']
+  selector: 'app-update-note',
+  templateUrl: './update-note.component.html',
+  styleUrls: ['./update-note.component.scss']
 })
-export class CreateNoteComponent implements OnInit {
+export class UpdateNoteComponent implements OnInit {
 
   noteForm: FormGroup;
   isLoading = false;
   isSubmitted = false;
   image: any;
   isInvalidImage = false;
-
+  id;
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
+    private activatedRoute:ActivatedRoute,
     private notesService: NotesService,
   ) { }
 
   ngOnInit() {
+    this.id = this.activatedRoute.snapshot.paramMap.get('id');
     this.noteForm = this.formBuilder.group({
       title: ['', Validators.required],
       priorityLevel: new FormControl('', [
@@ -70,10 +72,11 @@ export class CreateNoteComponent implements OnInit {
     }
 
     this.isLoading = true;
-    this.notesService.addNote(this.f.title.value, this.f.note.value, this.image, this.f.priorityLevel.value)
+    this.notesService.updateNote(this.id,this.f.title.value, this.f.note.value, this.image, this.f.priorityLevel.value)
       .pipe(first())
       .subscribe(
         data => {
+          
           this.router.navigate(['note-list']);
         },
         error => {

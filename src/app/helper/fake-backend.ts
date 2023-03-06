@@ -34,6 +34,8 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                     return addNote();
                 case url.endsWith('/notes/delete') && method === 'POST':
                     return deleteNote();
+                case url.endsWith('/notes/update') && method === 'POST':
+                    return updateNote();
                 case url.endsWith('/todo/'):
                     if (method === 'POST') {
                         return addNotes();
@@ -138,6 +140,29 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                 localStorage.setItem('notesList', JSON.stringify(notesList));
                 return ok({});
             }
+        }
+
+        function updateNote() {
+            currentUserId = JSON.parse(localStorage.getItem('currentUser')).id || '';
+            if (!isLoggedIn() || currentUserId === '') {
+                return unauthorized();
+            }
+            const { id, title, note, image, priorityLevel } = body;
+            const index = notesList.findIndex(x => x.id === currentUserId);
+            const userNotes = notesList[index].userNotes;
+            const noteIndexToUpdate = userNotes.findIndex(x => JSON.parse(x).id === id);
+          
+                const updatedNote = {
+                    id,
+                    title,
+                    note,
+                    image,
+                    priorityLevel
+                };
+                userNotes[noteIndexToUpdate] = JSON.stringify(updatedNote);
+                localStorage.setItem('notesList', JSON.stringify(notesList));
+                return ok(updatedNote);
+           
         }
 
         function getNote() {

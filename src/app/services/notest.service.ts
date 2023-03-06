@@ -13,5 +13,9 @@ export class NotesService {
     deleteNote(id:any){
         return this.http.post(`${this.apiUrl}/notes/delete`, {id});
     }
+
+    updateNote(id:any,title: string, note: string, image?: string, priorityLevel?: number){
+        return this.http.post(`${this.apiUrl}/notes/update`, {id, title, note, image, priorityLevel});
+    }
     
 }

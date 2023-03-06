@@ -6,6 +6,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ConfirmationDialogComponent } from '../helper/confirmationDialog/confirmationDialog.component';
 import { NotesService } from '../services/notest.service';
 import { first } from 'rxjs/operators';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-note-list',
   templateUrl: './note-list.component.html',
@@ -25,6 +26,7 @@ export class NoteListComponent implements OnInit {
   constructor(private authenticationService: AuthService,
      private elementRef: ElementRef, 
      private dialog: MatDialog,
+     private router:Router,
      private notesService:NotesService) {
     this.id = this.authenticationService.currentUserValue.id;
     this.lenempty = false;
@@ -101,6 +103,11 @@ export class NoteListComponent implements OnInit {
     })
 
   }
+
+  onUpdate(event){
+    this.router.navigate(['/update-note/'+event.id]);
+  }
+
   onLoadMore() {
     this.limit += 10
     this.loadData();
