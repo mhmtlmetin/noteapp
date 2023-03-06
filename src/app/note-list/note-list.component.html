@@ -24,6 +24,7 @@
             <p>{{ note.note }}</p>
             <p><strong>Öncelik Derecesi: </strong>{{ note.priorityLevel }}</p>
             <img *ngIf='note.image' [src]='note.image' />
+            <img *ngIf='!note.image' src="assets/no-image.png"  />
 
         </mat-card-content>
         <div>
